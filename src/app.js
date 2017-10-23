@@ -21,6 +21,11 @@ class IndecisionApp extends React.Component {
     this.setState(() => ({ options: [] }));
   }
   onAddOption(optionText) {
+    if (!optionText) {
+      return "OptionText is empty";
+    } else if (optionText.trim().length == 0) {
+      return "OptionText is empty";
+    }
     this.setState(prevState => ({
       options: prevState.options.concat(optionText)
     }));
@@ -93,18 +98,23 @@ class AddOption extends React.Component {
   constructor(props) {
     super(props);
     this.onAddOption = this.onAddOption.bind(this);
+    this.state = { error: null };
   }
   onAddOption(e) {
     e.preventDefault();
-    this.props.onAddOption(e.target.option.value);
+    const error = this.props.onAddOption(e.target.option.value);
     e.target.option.value = "";
+    this.setState(() => ({ error }));
   }
   render() {
     return (
-      <form onSubmit={this.onAddOption}>
-        <input type="text" name="option" />
-        <button>Add Option</button>
-      </form>
+      <div>
+        {this.state.error && <p className="error">{this.state.error}</p>}
+        <form onSubmit={this.onAddOption}>
+          <input type="text" name="option" />
+          <button>Add Option</button>
+        </form>
+      </div>
     );
   }
 }
