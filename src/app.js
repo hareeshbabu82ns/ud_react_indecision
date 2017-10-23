@@ -12,6 +12,17 @@ class IndecisionApp extends React.Component {
     this.onAddOption = this.onAddOption.bind(this);
     this.onRemoveOption = this.onRemoveOption.bind(this);
   }
+  componentDidMount() {
+    try {
+      const options = JSON.parse(localStorage.getItem("options"));
+      if (options) this.setState(() => ({ options }));
+    } catch (e) {}
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.options.length != this.state.options.length) {
+      localStorage.setItem("options", JSON.stringify(this.state.options));
+    }
+  }
   onMakeDecision() {
     this.setState(prevState => ({
       decision:
@@ -80,6 +91,7 @@ const Options = props => {
     <div>
       <button onClick={props.onRemoveAll}>Remove All</button>
       <ul>
+        {props.options.length == 0 && <p>Please add some Options!</p>}
         {props.options.map(option => (
           <Option
             key={option}
