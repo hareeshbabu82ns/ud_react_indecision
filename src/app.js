@@ -10,6 +10,7 @@ class IndecisionApp extends React.Component {
     this.onMakeDecision = this.onMakeDecision.bind(this);
     this.onRemoveAll = this.onRemoveAll.bind(this);
     this.onAddOption = this.onAddOption.bind(this);
+    this.onRemoveOption = this.onRemoveOption.bind(this);
   }
   onMakeDecision() {
     this.setState(prevState => ({
@@ -30,6 +31,11 @@ class IndecisionApp extends React.Component {
       options: prevState.options.concat(optionText)
     }));
   }
+  onRemoveOption(optionText) {
+    this.setState(prevState => ({
+      options: prevState.options.filter(option => option !== optionText)
+    }));
+  }
   render() {
     return (
       <div>
@@ -42,6 +48,7 @@ class IndecisionApp extends React.Component {
           decision={this.state.decision}
           options={this.state.options}
           onRemoveAll={this.onRemoveAll}
+          onRemoveOption={this.onRemoveOption}
         />
         <AddOption onAddOption={this.onAddOption} />
       </div>
@@ -74,13 +81,24 @@ const Options = props => {
       <button onClick={props.onRemoveAll}>Remove All</button>
       <ul>
         {props.options.map(option => (
-          <Option key={option} option={option} decision={props.decision} />
+          <Option
+            key={option}
+            option={option}
+            decision={props.decision}
+            onRemoveOption={props.onRemoveOption}
+          />
         ))}
       </ul>
     </div>
   );
 };
 
+// const Option = props => {
+//   return <li className={this.getOptCls()}>{props.option}</li>;
+// };
+// Option.getOptCls = () => {
+//   return this.props.decision === this.props.option ? "decision" : null;
+// };
 class Option extends React.Component {
   constructor(props) {
     super(props);
@@ -90,7 +108,18 @@ class Option extends React.Component {
     return this.props.decision === this.props.option ? "decision" : null;
   }
   render() {
-    return <li className={this.getOptCls()}>{this.props.option}</li>;
+    return (
+      <li className={this.getOptCls()}>
+        {this.props.option}
+        <button
+          onClick={e => {
+            this.props.onRemoveOption(this.props.option);
+          }}
+        >
+          Remove
+        </button>
+      </li>
+    );
   }
 }
 

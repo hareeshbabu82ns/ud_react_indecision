@@ -1,6 +1,25 @@
 {
+  "name": "indecision_app",
+  "description": "Udemy React Practice - Decision Making App",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hareeshbabu82ns/ud_react_indecision.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hareeshbabu82ns/ud_react_indecision/issues"
+  },
+  "homepage": "https://github.com/hareeshbabu82ns/ud_react_indecision#readme",
   "dependencies": {
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1"
-  }
+  },
+  "devDependencies": {}
 }
