@@ -1,10 +1,11 @@
 # Setup Step-by-Step
 - yarn init -y
-- yarn global add live-server
-- yarn global add babel-cli
+- yarn add live-server
+- yarn add babel-cli
 - yarn add babel-preset-react babel-preset-env
+- yarn add babel-core babel-loader
 
 ## running with live-server
-live-server public
-## compiling jsx using babel
-babel src\app.js --out-file=public/scripts/app.js --presets=env,react --watch
+yarn serve
+## webpcak
+yarn build
