@@ -6,6 +6,10 @@
 - yarn add webpack webpack-dev-server
 - yarn add -D babel-preset-stage-2
 
+- yarn add react-modal
+- css-loader style-loader
+- sass-loader node-sass
+
 ## webpcak build
 yarn build
 ## webpack dev server

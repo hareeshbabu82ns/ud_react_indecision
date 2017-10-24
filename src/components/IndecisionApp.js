@@ -4,6 +4,7 @@ import Header from "./Header";
 import Action from "./Action";
 import Options from "./Options";
 import AddOption from "./AddOption";
+import OptionModal from "./OptionModal";
 
 export default class IndecisionApp extends React.Component {
   state = {
@@ -47,6 +48,11 @@ export default class IndecisionApp extends React.Component {
       options: prevState.options.filter(option => option !== optionText)
     }));
   };
+  onOptionModalClose = () => {
+    this.setState(() => ({
+      decision: undefined
+    }));
+  };
   render() {
     return (
       <div>
@@ -62,6 +68,10 @@ export default class IndecisionApp extends React.Component {
           onRemoveOption={this.onRemoveOption}
         />
         <AddOption onAddOption={this.onAddOption} />
+        <OptionModal
+          decision={this.state.decision}
+          onClose={this.onOptionModalClose}
+        />
       </div>
     );
   }
