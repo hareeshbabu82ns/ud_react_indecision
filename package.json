@@ -31,5 +31,7 @@
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.3"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "babel-preset-stage-2": "^6.24.1"
+  }
 }

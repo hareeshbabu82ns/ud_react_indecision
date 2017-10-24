@@ -7,19 +7,12 @@ import Options from "./components/Options";
 import AddOption from "./components/AddOption";
 
 class IndecisionApp extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      title: "Indecision",
-      subTitle: "Put your life in the hands of a computer",
-      options: ["Opt 1", "Opt 2"],
-      decision: null
-    };
-    this.onMakeDecision = this.onMakeDecision.bind(this);
-    this.onRemoveAll = this.onRemoveAll.bind(this);
-    this.onAddOption = this.onAddOption.bind(this);
-    this.onRemoveOption = this.onRemoveOption.bind(this);
-  }
+  state = {
+    title: "Indecision",
+    subTitle: "Put your life in the hands of a computer",
+    options: ["Opt 1", "Opt 2"],
+    decision: null
+  };
   componentDidMount() {
     try {
       const options = JSON.parse(localStorage.getItem("options"));
@@ -31,16 +24,16 @@ class IndecisionApp extends React.Component {
       localStorage.setItem("options", JSON.stringify(this.state.options));
     }
   }
-  onMakeDecision() {
+  onMakeDecision = () => {
     this.setState(prevState => ({
       decision:
         prevState.options[Math.floor(Math.random() * prevState.options.length)]
     }));
-  }
-  onRemoveAll() {
+  };
+  onRemoveAll = () => {
     this.setState(() => ({ options: [] }));
-  }
-  onAddOption(optionText) {
+  };
+  onAddOption = optionText => {
     if (!optionText) {
       return "OptionText is empty";
     } else if (optionText.trim().length == 0) {
@@ -49,12 +42,12 @@ class IndecisionApp extends React.Component {
     this.setState(prevState => ({
       options: prevState.options.concat(optionText)
     }));
-  }
-  onRemoveOption(optionText) {
+  };
+  onRemoveOption = optionText => {
     this.setState(prevState => ({
       options: prevState.options.filter(option => option !== optionText)
     }));
-  }
+  };
   render() {
     return (
       <div>

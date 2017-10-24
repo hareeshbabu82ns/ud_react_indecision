@@ -4,6 +4,7 @@
 - yarn add babel-core babel-loader
 - yarn add react react-dom
 - yarn add webpack webpack-dev-server
+- yarn add -D babel-preset-stage-2
 
 ## running with live-server
 yarn serve
