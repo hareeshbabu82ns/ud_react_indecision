@@ -6,9 +6,7 @@
 - yarn add webpack webpack-dev-server
 - yarn add -D babel-preset-stage-2
 
-## running with live-server
-yarn serve
 ## webpcak build
 yarn build
 ## webpack dev server
-yarn dev-server
+yarn serve
