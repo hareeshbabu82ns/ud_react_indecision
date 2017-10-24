@@ -1,6 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+import Header from "./components/Header";
+import Action from "./components/Action";
+import Options from "./components/Options";
+import AddOption from "./components/AddOption";
+
 class IndecisionApp extends React.Component {
   constructor(props) {
     super(props);
@@ -65,99 +70,6 @@ class IndecisionApp extends React.Component {
           onRemoveOption={this.onRemoveOption}
         />
         <AddOption onAddOption={this.onAddOption} />
-      </div>
-    );
-  }
-}
-
-const Header = props => {
-  return (
-    <div>
-      <h1>{props.title}</h1>
-      <h2>{props.subTitle}</h2>
-    </div>
-  );
-};
-
-const Action = props => {
-  return (
-    <div>
-      <button onClick={props.onMakeDecision} disabled={!props.hasOptions}>
-        Make Decision
-      </button>
-    </div>
-  );
-};
-
-const Options = props => {
-  return (
-    <div>
-      <button onClick={props.onRemoveAll}>Remove All</button>
-      <ul>
-        {props.options.length == 0 && <p>Please add some Options!</p>}
-        {props.options.map(option => (
-          <Option
-            key={option}
-            option={option}
-            decision={props.decision}
-            onRemoveOption={props.onRemoveOption}
-          />
-        ))}
-      </ul>
-    </div>
-  );
-};
-
-// const Option = props => {
-//   return <li className={this.getOptCls()}>{props.option}</li>;
-// };
-// Option.getOptCls = () => {
-//   return this.props.decision === this.props.option ? "decision" : null;
-// };
-class Option extends React.Component {
-  constructor(props) {
-    super(props);
-    this.getOptCls = this.getOptCls.bind(this);
-  }
-  getOptCls() {
-    return this.props.decision === this.props.option ? "decision" : null;
-  }
-  render() {
-    return (
-      <li className={this.getOptCls()}>
-        {this.props.option}
-        <button
-          onClick={e => {
-            this.props.onRemoveOption(this.props.option);
-          }}
-        >
-          Remove
-        </button>
-      </li>
-    );
-  }
-}
-
-class AddOption extends React.Component {
-  constructor(props) {
-    super(props);
-    this.onAddOption = this.onAddOption.bind(this);
-    this.state = { error: null };
-  }
-  onAddOption(e) {
-    e.preventDefault();
-    const error = this.props.onAddOption(e.target.option.value);
-    e.target.option.value = "";
-    this.setState(() => ({ error }));
-  }
-  render() {
-    return (
-      <div>
-        {this.state.error && <p className="error">{this.state.error}</p>}
-        <form onSubmit={this.onAddOption}>
-          <input type="text" name="option" />
-          <button>Add Option</button>
-        </form>
       </div>
     );
   }
