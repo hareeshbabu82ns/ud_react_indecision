@@ -9,6 +9,7 @@
 - yarn add react-modal
 - css-loader style-loader
 - sass-loader node-sass
+- normalize.css
 
 ## webpcak build
 yarn build

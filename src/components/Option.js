@@ -17,16 +17,17 @@ export default class Option extends React.Component {
   }
   render() {
     return (
-      <li className={this.getOptCls()}>
-        {this.props.option}
+      <div className="option">
+        <p className="option__text">{this.props.option}</p>
         <button
+          className="button button--link"
           onClick={e => {
             this.props.onRemoveOption(this.props.option);
           }}
         >
           Remove
         </button>
-      </li>
+      </div>
     );
   }
 }

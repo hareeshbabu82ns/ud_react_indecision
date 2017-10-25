@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/hareeshbabu82ns/ud_react_indecision#readme",
   "dependencies": {
+    "normalize.css": "^7.0.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-modal": "^3.0.4"
